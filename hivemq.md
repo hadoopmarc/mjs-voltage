@@ -1,5 +1,8 @@
 $ . setenv.sh
 
+
+
+
 This will not work yet...
 
 $ mosquitto_pub -h 593d7131864a4e60a19dde655555b6f2.s2.eu.hivemq.cloud -p 8883 -u $HIVEMQ_USER -P $HIVEMQ_PWD -t voltage/tasmota -m 'From mosquitto'

@@ -12,7 +12,7 @@ import paho.mqtt.client as mqtt
 host = "593d7131864a4e60a19dde655555b6f2.s2.eu.hivemq.cloud"  # Free mjs-voltage cluster
 port = 8883
 keepalive = 60
-topic = 'voltage'
+topic_pattern = 'voltage/#'
 
 dotenv.load_dotenv()
 
@@ -31,17 +31,30 @@ def on_message(client, userdata, message):
 
 
 def main():
-    client = mqtt.Client()
+    # See https://github.com/matesh/mqttk/blob/master/mqttk/MQTT_manager.py
+    # for the paho calls used by the mqttk command line client
+    client = mqtt.Client(
+        'device_id',
+        clean_session=True,
+        userdata=None,
+        protocol=mqtt.MQTTv311,
+        transport="tcp")
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect(host, port, keepalive)
-    print('After connect', type(os.getenv('HIVEMQ_USER')))
     client.username_pw_set(os.getenv('HIVEMQ_USER'), os.getenv('HIVEMQ_PWD'))
     print('After pw')
-    # client.tls_set(cert_reqs=ssl.CERT_REQUIRED)
-    client.tls_set(cert_reqs=ssl.CERT_REQUIRED)
+    client.tls_set(
+        ca_certs=None,
+        certfile=None,
+        keyfile=None,
+        cert_reqs=ssl.CERT_REQUIRED,
+        tls_version=ssl.PROTOCOL_TLS,
+        ciphers=None,
+        keyfile_password=None)
     print('After tls')
-    client.subscribe(topic, qos=0)
+    client.connect(host, port, keepalive)
+    print('After connect')
+    client.subscribe(topic_pattern, qos=0)
     print('After sub')
     
     while True:
