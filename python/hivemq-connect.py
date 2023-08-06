@@ -9,11 +9,11 @@ import dotenv
 import paho.mqtt.client as mqtt
 
 
-host = "593d7131864a4e60a19dde655555b6f2.s2.eu.hivemq.cloud"  # Free mjs-voltage cluster
 port = 8883
 keepalive = 60
 topic_pattern = 'voltage/#'
 
+# Local .env file should provide HIVEMQ_FQDN, HIVEMQ_USER and HIVEMQ_PWD env variables
 dotenv.load_dotenv()
 
 
@@ -52,7 +52,7 @@ def main():
         ciphers=None,
         keyfile_password=None)
     print('After tls')
-    client.connect(host, port, keepalive)
+    client.connect(os.getenv('HIVEMQ_FQDN'), port, keepalive)
     print('After connect')
     client.subscribe(topic_pattern, qos=0)
     print('After sub')
