@@ -2,14 +2,14 @@
 
 The Tasmota software can run on many smart plugs with the ESP8266 microcontroller. Using Tasmota in a project where smart plugs connect to a cloud MQTT broker gives rise to two issues:
 
-1. Standard Tasmota images do not include secure MQTT using TLS. For this, the Tasmota image needs to be upgraded.
+1. Standard Tasmota images do not include secure MQTT using TLS. For this, the Tasmota image needs to be built with the MQTT-TLS feature.
 2. Many smart plugs come with a proprietary image and need to be reflashed with the Tasmota software. One could still want to buy such plugs because of the nicer form factor (e.g. Gosund vs Athom).
 
 ## Tasmota with secure MQTT
-Various instructions for flashing:
+Instructions for building a custom image and "over the air" upgrading:
 
-- [https://tasmota.github.io/docs/Upgrading/](https://tasmota.github.io/docs/Upgrading/)
 - [https://tasmota.github.io/docs/TLS/](https://tasmota.github.io/docs/TLS/)
+- [https://tasmota.github.io/docs/Upgrading/](https://tasmota.github.io/docs/Upgrading/)
 
 ## Flashing plugs without tasmota
 
@@ -26,8 +26,20 @@ Various instructions for flashing:
 - Done: Compile tasmota including MQTT TLS
 - Done: Upgrade Athom plugs
 
-## Custom Tasmota build with MQTT-TLS
+## Tasmota WiFi behaviour
+Although the configuration menu in the Tasmota web UI offers an option to enter alternative values for the ssid and password, the firmware does not seem to try and use these alternative values when the primary values fail. This might be a bug (tested on v 12.5.0 on the Athom v2 and Gosund EP2 plugs). Possibly, the secondary access point settings rather apply to a second Wifi module that can be connected to an ESP32 chip (not for ESP8266).
 
+The behaviour described above implies that a Tasmota smart plug can only be connected to a different WiFi network than initially configured, by [device recovery](https://tasmota.github.io/docs/Device-Recovery/). However, device recovery is painful because all settings are reset to firmware defaults (including calibration).
+
+A temporary workaround is to change the [WifiConfig](https://tasmota.github.io/docs/Commands/#wi-fi) from the default *4 = retry other AP without rebooting* to *2 = set Wi-Fi Manager as the current configuration tool*. If the device cannot connect to the Wifi using the primary access point settings, the [WifiManager](https://github.com/tzapu/WiFiManager/blob/master/README.md#how-it-works) is run for 3 minutes during which the smart plug functions as a Wifi access point and runs a web UI on the 192.168.4.1 IP address. There, it is possible to configure new values for the ssid and password.
+
+One can apply this workaround manually by entering the following commands in the console of the smart plug's web UI:
+
+- `WebPassword my_secret_password` &nbsp;&nbsp; [if not already done via the web UI]
+- `WifiConfig 2`
+- `Restart 1`
+
+Although the custom Tasmota build allows the WifiManager to be set as a firmware default, this is not recommended because it implies a serious safety issue: if the primary WiFi is unavailable, anyone in the neighbourhood of the plug can detect it functioning as an access point without WPA2 security. The username/password protection is run by - assumably - vulnerable software. Also, the password can be read in case of physical access to the plug.
 
 
 ## Upgrading Tasmota firmware on Athom v2 plugs
