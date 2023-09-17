@@ -54,6 +54,6 @@ To sidestep storage limitations of the ESP8266, the upgrade must be performed in
 2 Upgrade by uploading the custom build 12.5.0 firmware with MQTT-TLS (tasmota.bin.gz)
 
 
-
+Interesting: https://www.amazon.de/dp/B0054PSIPA?ref=myi_title_dp&th=1
 
 
