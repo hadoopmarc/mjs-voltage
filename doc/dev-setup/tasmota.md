@@ -20,11 +20,20 @@ Instructions for building a custom image and "over the air" upgrading:
 - [https://www.sbprojects.net/projects/sonoff/](https://www.sbprojects.net/projects/sonoff/)
 - [https://github.com/ct-Open-Source/tuya-convert/issues/483](https://github.com/ct-Open-Source/tuya-convert/issues/483)
 
-## ToDo:
-- Find Gosund versions and check upgradebility (Gosund1: v1.0.?, Gosund2: v1.0.4 X)
-- Done: Find better programmer (mod or rebuy) USB-TTL-programmers based on an 2102 chip do not supply sufficient current to the ESP8285! Need programmer with CH340 chip, e.g. [https://www.bol.com/nl/nl/p/otronic-ch340-ttl-usb-serial-port-adapter-3-3v-5v-hw-597](https://www.bol.com/nl/nl/p/otronic-ch340-ttl-usb-serial-port-adapter-3-3v-5v-hw-597) These are available at the Hahaho Makey Mondays.
+## Smart plugs in use
 - Done: Compile tasmota including MQTT TLS
-- Done: Upgrade Athom plugs
+- Done: Find better programmer (mod or rebuy) USB-TTL-programmers based on an 2102 chip do not supply sufficient current to the ESP8285! Need programmer with CH340 chip, e.g. [https://www.bol.com/nl/nl/p/otronic-ch340-ttl-usb-serial-port-adapter-3-3v-5v-hw-597](https://www.bol.com/nl/nl/p/otronic-ch340-ttl-usb-serial-port-adapter-3-3v-5v-hw-597) These are available at the Hahaho Makey Mondays.
+
+After upgrading or flashing, the plugs do not have the right configs anymore. Profiles below can be configured via the plug's web UI.
+
+Athom v2 plugs (after upgrading to tasmota-12.5.0 with MQTT TLS)
+[https://templates.blakadder.com/athom_PG01V2-EU16A-TAS.html](https://templates.blakadder.com/athom_PG01V2-EU16A-TAS.html)
+{"NAME":"Athom Plug V2","GPIO":[0,0,0,3104,0,32,0,0,224,576,0,0,0,0],"FLAG":0,"BASE":18}
+
+Gosund EP2 plugs (after flashing with Tasmota)
+[https://templates.blakadder.com/gosund_EP2.html](https://templates.blakadder.com/gosund_EP2.html)
+{"NAME":"Gosund EP2","GPIO":[576,1,320,1,2656,2720,0,0,2624,32,0,224,0,0],"FLAG":0,"BASE":45}
+
 
 ## Tasmota WiFi behaviour
 Although the configuration menu in the Tasmota web UI offers an option to enter alternative values for the ssid and password, the firmware does not seem to try and use these alternative values when the primary values fail. This might be a bug (tested on v 12.5.0 on the Athom v2 and Gosund EP2 plugs). Possibly, the secondary access point settings rather apply to a second Wifi module that can be connected to an ESP32 chip (not for ESP8266).

@@ -5,6 +5,8 @@ It is limited to 100 connected devices, but an unlimited open source docker vers
 
 It is also possible to use the [public cloud-based HiveMQ broker](https://www.hivemq.com/public-mqtt-broker/), but this would expose tasmota devices to the MQTT cmd/# topics if MQTT is enabled.
 
+Checked with browser: HiveMQ uses a certificate from Let's Encrypt (supported by Tasmota custom MQTT TLS builds!)
+
 Getting MQTT client tools working with the HiveMQ cloud broker is a bit confusing, so see some recipes below. The recipes assume that HIVEMQ_URL, HIVEMQ_USER and HIVEMQ_PWD environment variable are set, typically using:
 
 $ . setenv.sh
