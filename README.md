@@ -18,5 +18,11 @@ Measure voltages across the entire city
 
 ## Introduction
 
+
+![](doc/assets/high-voltage.png)
+
+![](doc/assets/high-level.png)
+
 https://www.zonnefabriek.nl/nieuws/file-op-het-net-vanwege-weinig-bedrijvigheid-en-veel-zon/
+
 https://www.stedin.net/aansluiting/ik-ga-energie-opwekken/spanningsproblemen
