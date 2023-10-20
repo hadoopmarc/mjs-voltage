@@ -12,7 +12,7 @@ Note that the setup described below does not include an internet connection, but
 Setting up your RPI as an OpenWrt WiFi router comprises a number of steps, which are described in the sections below. It is assumed that you have a separate computer/laptop with WiFi and an SD-card reader available.
 
 ## Step 0:
-Update your Raspberry 
+Update your Raspberry Pi when it runs standard Raspbian.
 
 ## Step 1: SD-card with the OpenWrt image
 Download the binary image from the [OpenWrt Raspberry Pi page](https://openwrt.org/toh/raspberry_pi_foundation/raspberry_pi#installation) and be sure to select the right RPI model from the "Firmware OpenWrt Install" column. I used version  22.03.05 for the RPI400.
