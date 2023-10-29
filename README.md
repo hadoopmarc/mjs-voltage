@@ -22,7 +22,7 @@ The energy transition for reducing climate change due to CO<sub>2</sub> emission
 
 ![](doc/assets/high-voltage.png)
 
-It is only fair to expect that similar congestion problems will occur in the medium- and low-level voltage distribution networks towards households and small enterprises. In fact, the Utrecht City Board recently expressed this as an important concern as soon as 2025, see [this news report](https://www.duic.nl/algemeen/gemeente-utrecht-bezorgd-over-grenzen-van-elektriciteitsnetwerk-die-in-zicht-komen-dit-kan-iedereen-in-de-stad-raken/) (in Dutch).
+It is only fair to expect that similar congestion problems will occur in the medium- and low-level electricity distribution networks towards households and small enterprises. In fact, the Utrecht City Board recently expressed this as an important concern as soon as 2025, see [this news report](https://www.duic.nl/algemeen/gemeente-utrecht-bezorgd-over-grenzen-van-elektriciteitsnetwerk-die-in-zicht-komen-dit-kan-iedereen-in-de-stad-raken/) (in Dutch).
 
 The transport network operators are not very forthcoming in [acknowledging existing local congestion problems](https://www.stedin.net/aansluiting/ik-ga-energie-opwekken/spanningsproblemen) and first require you to have your in-house network checked by an electrician. They allow you, though, to check whether others have reported network voltage problems in your zipcode area.
 
