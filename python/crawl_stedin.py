@@ -1,4 +1,5 @@
 import os
+import pickle
 import time
 
 from dotenv import load_dotenv
@@ -57,4 +58,6 @@ if __name__ == '__main__':
     print(postcodes)
     complaints = {code: get_complaints(code) for code in postcodes}
     print(complaints)
+    with open('complaints.pickle', 'wb') as handle:
+        pickle.dump(complaints, handle, protocol=pickle.HIGHEST_PROTOCOL)
     driver.quit()
